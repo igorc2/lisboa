@@ -8,7 +8,7 @@ class CreateProject extends Component {
     title: '',
     description: '',
     responsible: '',
-    status: 1
+    status: 3
   }
 
   handleChange = (e) => {

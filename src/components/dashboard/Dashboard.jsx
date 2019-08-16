@@ -17,19 +17,22 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: '#A2F4A5'
+    backgroundColor: '#A2F4A5',
+    minHeight: 700
   },
   paperDoing: {
     padding: theme.spacing(3),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: '#A2A5F4'
+    backgroundColor: '#A2A5F4',
+    minHeight: 700
   },
   paperDone: {
     padding: theme.spacing(3),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: '#F4A2A5'
+    backgroundColor: '#F4A2A5',
+    minHeight: 700
   },
 }));
 
@@ -45,16 +48,19 @@ const DashBoard = ({ projects, auth }) => {
       <Grid container spacing={3}>
         <Grid item xs={4}>
           <Paper elevation='4' className={classes.paperTodo}>
+            <h4>A fazer</h4>
             <ProjectList projects={projectsToDo}/>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paperDoing}>
+            <h4>Fazendo</h4>
             <ProjectList projects={projectsDoing}/>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paperDone}>
+            <h4>Feito</h4>
             <ProjectList projects={projectsDone}/>
           </Paper>
         </Grid>

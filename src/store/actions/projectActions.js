@@ -22,3 +22,19 @@ export const createProject = (project) => {
     })
   }
 }
+
+export const updateProject = (project) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+
+    const firestore = getFirestore();
+    console.log('project', project)
+    firestore.collection("projects").doc(project.uid).update({status: '3'}).then(() => {
+      dispatch({
+        type: 'UPDATE_PROJECT',
+        project
+      })
+    }).catch((err) => {
+      dispatch({type: 'UPDATE_PROJECT_ERRO', err})
+    });
+  }
+}
