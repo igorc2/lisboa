@@ -46,19 +46,19 @@ const DashBoard = ({ projects, auth }) => {
   return (
     <div className='container'>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item sm={4} xs={12}>
           <Paper elevation='4' className={classes.paperTodo}>
             <h4>A fazer</h4>
             <ProjectList projects={projectsToDo}/>
           </Paper>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item sm={4}  xs={12}>
           <Paper className={classes.paperDoing}>
             <h4>Fazendo</h4>
             <ProjectList projects={projectsDoing}/>
           </Paper>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item sm={4} xs={12}>
           <Paper className={classes.paperDone}>
             <h4>Feito</h4>
             <ProjectList projects={projectsDone}/>
