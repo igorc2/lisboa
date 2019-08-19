@@ -18,7 +18,7 @@ export const createProject = (project) => {
         project
       })
     }).catch((err) => {
-      dispatch({type: 'CREATE_PROJECT_ERRO', err})
+      dispatch({type: 'CREATE_PROJECT_ERROR', err})
     })
   }
 }
@@ -28,13 +28,30 @@ export const updateProject = (project) => {
 
     const firestore = getFirestore();
     console.log('project', project)
-    firestore.collection("projects").doc(project.uid).update({status: '3'}).then(() => {
+    //firestore.collection("projects").doc(project.uid).update({status: '3'}).then(() => {
+    firestore.update({collection: 'projects', doc: project.id}, project).then(() => {
       dispatch({
         type: 'UPDATE_PROJECT',
         project
       })
     }).catch((err) => {
-      dispatch({type: 'UPDATE_PROJECT_ERRO', err})
+      dispatch({type: 'UPDATE_PROJECT_ERROR', err})
+    });
+  }
+}
+
+
+export const deleteProject = (project) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+
+    const firestore = getFirestore();
+    firestore.delete({collection: 'projects', doc: project.id}, project).then(() => {
+      dispatch({
+        type: 'DELETE_PROJECT',
+        project
+      })
+    }).catch((err) => {
+      dispatch({type: 'DELETE_PROJECT_ERROR', err})
     });
   }
 }
