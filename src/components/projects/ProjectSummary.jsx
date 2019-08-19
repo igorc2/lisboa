@@ -37,23 +37,8 @@ const ProjectSummary = ({ project }) => {
       </Link>
       <CardActions className={classes.action} >
         <StatusLabel projectId={project.id} />
-        {/* <Button size="small">Learn More</Button> */}
       </CardActions>
     </Card>
-
-
-    // <div className="card z-depth-0 project-summary">
-    //   <Link to={'/project/' + project.id} key={project.id}>
-    //     <div className="card-content grey-text text-darken-3">
-    //       <span className="card-title">{project.title}</span>
-    //       <p>Responsável: {project.responsible}</p>
-    //       {/* <p className="grey-text">{moment(project.createdAt.toDate()).calendar()}</p> */}
-    //     </div>
-    //   </Link>
-    //   <div className="section">
-    //     <StatusLabel projectId={project.id} />
-    //   </div>
-    // </div>
   );
 }
 
