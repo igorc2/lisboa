@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const SignedOutLinks = () => {
   return (
-    <ul className='right'>
-        <li><NavLink to='/signup'>Cadastrar</NavLink></li>
-        <li><NavLink to='/signin'>Login</NavLink></li>
-    </ul>
+    <div>
+      <Button color="inherit"><NavLink to='/signup'>Cadastrar</NavLink></Button>
+      <Button color="inherit"><NavLink to='/signin'>Login</NavLink></Button>
+    </div>
   );
 }
 

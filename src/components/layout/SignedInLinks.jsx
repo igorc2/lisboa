@@ -2,16 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { signOut } from '../../store/actions/authActions';
+import Button from '@material-ui/core/Button';
 
 const SignedInLinks = (props) => {
   return (
-    <ul className='right'>
-        <li><NavLink to='/create'>Criar tarefa</NavLink></li>
-        <li><a onClick={props.signOut}>Log Out</a></li>
-        <li><NavLink to='/' className='btn btn-floating pink lighten-1'>
-          {props.profile.initials}  
-        </NavLink></li>
-    </ul>
+    <div>
+      <Button color="inherit"><NavLink to='/create'>Criar tarefa</NavLink></Button>
+      <Button color="inherit"><a onClick={props.signOut}>Log Out</a></Button>
+      <NavLink to='/' className='btn btn-floating pink lighten-1'>
+        {props.profile.initials}
+      </NavLink>
+    </div>
   );
 }
 
