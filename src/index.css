@@ -18,7 +18,6 @@ body {
 
 form {
   padding: 20px;
-  margin-top: 60px;
 }
 
 form button, form h5 {
@@ -31,4 +30,12 @@ input[type=password]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]){
   border-color: #00bcd4;
   box-shadow: none
+}
+
+a{
+  color: inherit
+}
+
+.main-content {
+  margin-top: 60px;
 }

@@ -7,8 +7,8 @@ import Button from '@material-ui/core/Button';
 const SignedInLinks = (props) => {
   return (
     <div>
-      <Button color="inherit"><NavLink to='/create'>Criar tarefa</NavLink></Button>
-      <Button color="inherit"><a onClick={props.signOut}>Log Out</a></Button>
+      <NavLink to='/create'><Button color="inherit">Criar tarefa</Button></NavLink>
+      <Button onClick={props.signOut} color="inherit">Log Out</Button>
       <NavLink to='/' className='btn btn-floating pink lighten-1'>
         {props.profile.initials}
       </NavLink>

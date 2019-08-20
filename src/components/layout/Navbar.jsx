@@ -14,10 +14,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    justifyContent: 'center',
+    backgroundColor: 'red'
   },
+
   title: {
     flexGrow: 1,
   },
+  toolbar: {
+    maxWidth: '70%'
+  }
 }));
 
 const NavBar = (props) => {
@@ -29,13 +35,11 @@ const NavBar = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Link to='/' className='brand-logo'>
-            <Typography variant="h6" className={classes.title}>
-              LisbonTasks
-            </Typography>
-          </Link>
+      <AppBar className='cyan darken-4' position="static">
+        <Toolbar className='container'>
+          <Typography variant="h5" className={classes.title}>
+            <Link to='/' className='brand-logo'>LisbonTasks</Link>
+          </Typography>
           {links}
         </Toolbar>
       </AppBar>

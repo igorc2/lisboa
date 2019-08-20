@@ -4,10 +4,10 @@ import Button from '@material-ui/core/Button';
 
 const SignedOutLinks = () => {
   return (
-    <div>
-      <Button color="inherit"><NavLink to='/signup'>Cadastrar</NavLink></Button>
-      <Button color="inherit"><NavLink to='/signin'>Login</NavLink></Button>
-    </div>
+    <React.Fragment>
+      <NavLink to='/signup'><Button color="inherit">Cadastrar</Button></NavLink>
+      <NavLink to='/signin'><Button color="inherit">Login</Button></NavLink>
+    </React.Fragment>
   );
 }
 
