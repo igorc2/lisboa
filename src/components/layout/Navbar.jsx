@@ -14,8 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    justifyContent: 'center',
-    backgroundColor: 'red'
+    justifyContent: 'center'
   },
 
   title: {
@@ -36,7 +35,7 @@ const NavBar = (props) => {
   return (
     <div className={classes.root}>
       <AppBar className='cyan darken-4' position="static">
-        <Toolbar className='container'>
+        <Toolbar disableGutters className='container'>
           <Typography variant="h5" className={classes.title}>
             <Link to='/' className='brand-logo'>LisbonTasks</Link>
           </Typography>

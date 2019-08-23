@@ -8,12 +8,13 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { withRouter } from 'react-router-dom';
 import { updateProject } from '../../store/actions/projectActions';
+import color from '@material-ui/core/colors/deepOrange';
 
-const statusList = [
-  { id: 1, name: "A fazer" },
-  { id: 2, name: "Fazendo" },
-  { id: 3, name: "Concluída" },
-]
+// const statusList = [
+//   { id: 1, name: "A fazer" },
+//   { id: 2, name: "Fazendo" },
+//   { id: 3, name: "Concluída" },
+// ]
 
 
 class StatusLabel  extends Component {
@@ -30,7 +31,7 @@ class StatusLabel  extends Component {
   }
 
   render() {
-    const { project } = this.props;
+    const { project, statusList } = this.props;
     return (
       <FormControl >
         <InputLabel htmlFor="age-simple">Status</InputLabel>
@@ -43,7 +44,7 @@ class StatusLabel  extends Component {
             id: 'age-simple',
           }}
           >
-          { statusList.map(s => 
+          { statusList && statusList.map(s => 
             <MenuItem value={s.id}>{s.name}</MenuItem>
             )}
         </Select>
@@ -53,17 +54,19 @@ class StatusLabel  extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+  console.log('state aa :', state);
   const id = props.projectId;
   const projects = state.firestore.data.projects;
   const project = projects ? projects[id] : null;
   return {
     project,
+    statusList: state.firestore.ordered.statusList,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateProject: (project) => dispatch(updateProject(project))
+    updateProject: (project) => dispatch(updateProject(project)),
   }
 }
 

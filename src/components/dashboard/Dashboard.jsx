@@ -13,65 +13,45 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  paperTodo: {
+  tasksList: {
     padding: theme.spacing(3),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    backgroundColor: '#A2F4A5',
-    minHeight: 700
-  },
-  paperDoing: {
-    padding: theme.spacing(3),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    backgroundColor: '#A2A5F4',
-    minHeight: 700
-  },
-  paperDone: {
-    padding: theme.spacing(3),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    backgroundColor: '#F4A2A5',
-    minHeight: 700
-  },
+    backgroundColor: '#6f9e95',
+    minHeight: 640
+  }
 }));
 
 
-const DashBoard = ({ projects, auth }) => {
+const DashBoard = ({ projects, auth, statusList }) => {
   const classes = useStyles();
-  const projectsToDo = projects && projects.filter(x => x.status === 1);
-  const projectsDoing = projects && projects.filter(x => x.status === 2);
-  const projectsDone = projects && projects.filter(x => x.status === 3);
+  const projectList = statusList && statusList
+    .sort((a, b) => a.id - b.id)
+    .map(status => 
+      (
+        <Grid item sm={4} xs={12}>
+          <Paper elevation='4' className={classes.tasksList}>
+            <h4>{status.name}</h4>
+            <ProjectList projects={projects.filter(x => x.status === status.id)} />
+          </Paper>
+        </Grid>
+      ));
+
   if(!auth.uid) return <Redirect to='/signin'/>
   return (
     <div className='container'>
       <Grid container spacing={3}>
-        <Grid item sm={4} xs={12}>
-          <Paper elevation='4' className={classes.paperTodo}>
-            <h4>A fazer</h4>
-            <ProjectList projects={projectsToDo}/>
-          </Paper>
-        </Grid>
-        <Grid item sm={4}  xs={12}>
-          <Paper className={classes.paperDoing}>
-            <h4>Fazendo</h4>
-            <ProjectList projects={projectsDoing}/>
-          </Paper>
-        </Grid>
-        <Grid item sm={4} xs={12}>
-          <Paper className={classes.paperDone}>
-            <h4>Feito</h4>
-            <ProjectList projects={projectsDone}/>
-          </Paper>
-        </Grid>
+        {projectList}
       </Grid>
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
+  console.log('state :', state);
   return {
     projects: state.firestore.ordered.projects,
+    statusList: state.firestore.ordered.statusList,
     auth: state.firebase.auth
   }
 }
@@ -79,6 +59,7 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'projects' }
+    { collection: 'projects'},
+    { collection: 'statusList' }
   ])
 )(DashBoard)
